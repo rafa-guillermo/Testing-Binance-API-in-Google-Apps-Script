@@ -22,7 +22,7 @@ Use Google Apps Script to connect to the Binance API with the aim of obtaining p
 ### Wave 2 Results:
 - 41 `HTTP 418` responses were received
 - 4 `HTTP 403` responses were received
-- 7 empty responses were received (´[]´)
+- 7 empty responses were received (`[]`)
 - As empty responses with HTTP 200 were received it seems that it is occasionally possible to retrieve data from the API in Google Apps Script.
 - Testing a third wave using an endpoint that I can be sure will have data.
 
