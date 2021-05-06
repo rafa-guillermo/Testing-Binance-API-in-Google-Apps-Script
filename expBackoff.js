@@ -11,8 +11,8 @@ function generateSugnature(string) {
 
 function makeApiCall(endpoint, string) {    
   const timestamp = Number(new Date().getTime()).toFixed(0)
-  const signature = generateSugnature(string)
   string = string + timestamp  
+  const signature = generateSugnature(string)
   
   const query = "?" + string + "&signature=" + signature
   const params = {
