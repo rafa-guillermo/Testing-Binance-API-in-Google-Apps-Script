@@ -22,12 +22,12 @@ Use Google Apps Script to connect to the Binance API with the aim of obtaining p
 ### Wave 2 Results:
 - 41 `HTTP 418` responses were received
 - 4 `HTTP 403` responses were received
-- 7 empty responses were received (`[]`)
+- 7 empty responses were) received (`[]`)
 - As empty responses with HTTP 200 were received it seems that it is occasionally possible to retrieve data from the API in Google Apps Script.
 - Testing a third wave using an endpoint that I can be sure will have data.
 
 ### Testing Wave 3:
-- Modularised code to make generic calls.
+- Modularised code to make generic calls, uploaded to [`expBackoff.js`](https://github.com/rafa-guillermo/GAS-Binance-API-Test/blob/main/expBackoff.js) with [enumerator file](https://github.com/rafa-guillermo/GAS-Binance-API-Test/blob/main/ENUMS.js).
 - Created function to call Account Information endpoint (https://api.binance.com/api/v3/account)
 - Ran 50 requests to this endpoint
 
