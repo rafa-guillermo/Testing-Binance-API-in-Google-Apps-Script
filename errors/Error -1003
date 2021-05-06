@@ -1,0 +1,4 @@
+{
+  "code": -1003,
+  "msg": "Way too much request weight used; IP banned until 1620285705097. Please use the websocket for live updates to avoid bans."
+}
