@@ -1,48 +1,24 @@
-const apiKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-const apiSecret = "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+function main() {
+    const apiKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+    const apiSecret = "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+    const baseUrl = "https://api.binance.com"
+    const endpoint = "/api/v3/allOrders"
+    const timestamp = Number(new Date().getTime()).toFixed(0)
+    const string = "symbol=LTCBTC&timestamp=" + timestamp
 
-function generateSugnature(string) {
-  let signature = Utilities.computeHmacSha256Signature(string, apiSecret)
-  return signature.map(function(x) {
-    const val = (x < 0 ? x + 256 : x).toString(16)
-    return val.length == 1 ? "0" + val : val
-  }).join("")
-}
 
-function makeApiCall(endpoint, string) {    
-  const timestamp = Number(new Date().getTime()).toFixed(0)
-  string = string + timestamp  
-  const signature = generateSugnature(string)
-  
-  
-  const query = "?" + string + "&signature=" + signature
-  const params = {
-    'method': 'get',
-    'headers': {'X-MBX-APIKEY': apiKey},
-  }
-  const response = UrlFetchApp.fetch(`${endpoint}${query}`, params)
-  console.log(response.getContentText())
-}
+    let signature = Utilities.computeHmacSha256Signature(string, apiSecret)
+    signature = signature.map(function(x) {
+        const val = (x < 0 ? x + 256 : x).toString(16)
+        return val.length == 1 ? "0" + val : val
+    }).join("")
 
-function exponentialBackoff(url, string) {
-  for (let count = 0; count < 50; count++) {
-    try {
-      Utilities.sleep((count * count) + (Math.random() * 1000))
-      makeApiCall(url, string)
-    }    
-    catch(e) {
-      console.info(e)
-      continue
+    const query = "?" + string + "&signature=" + signature
+    const params = {
+        'method': 'get',
+        'headers': {'X-MBX-APIKEY': apiKey},
+        'muteHttpExceptions': true
     }
-  }
-}
-
-function allOrders() {
-  // makeApiCall(Binance.Endpoint.ALL_ORDERS, "symbol=LTCBTC&timestamp=")
-  exponentialBackoff(Binance.Endpoint.ALL_ORDERS, "symbol=LTCBTC&timestamp=")
-}
-
-function accountInformation() {
-  // makeApiCall(Binance.Endpoint.ACCOUNT_INFORMATION, "")
-  exponentialBackoff(Binance.Endpoint.ACCOUNT_INFORMATION, "timestamp=")
+    const response = UrlFetchApp.fetch(`${baseUrl}${endpoint}${query}`, params)
+    console.log(response.getContentText())
 }
