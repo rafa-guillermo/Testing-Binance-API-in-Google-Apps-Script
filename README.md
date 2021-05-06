@@ -39,7 +39,7 @@ Use Google Apps Script to connect to the Binance API with the aim of obtaining p
 - Response success rate is approximately 9.6%:
   - 250 requests were sent in 5 batches of 50 (successful responses per batch: 4, 7, 7, 0, 6)
   - Count, N : 5
-  - Sum, Σx : 24 ( /250)
+  - Sum, Σx : 24 ( / 250 )
   - Mean, x̄ : 4.8
   - Variance, s<sup>2</sup> : 8.7
 
