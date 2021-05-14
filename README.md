@@ -1,4 +1,4 @@
-# GAS Binance API Testing Script
+# Research: Testing Binance API from Google Apps Script
 
 ### Objective:
 Use Google Apps Script to connect to the Binance API with the aim of obtaining public and private resources.
